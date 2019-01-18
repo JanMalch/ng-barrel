@@ -60,7 +60,7 @@ By default it searches for `index.ts`. You can change this behaviour via `--barr
 With this option you can use it for Angular libraries as well:
 
 ```bash
-ng g s lib/services/foo Foo --project=my-lib | ng-barrel --barrel public-api.ts
+ng g s services/foo Foo --project=my-lib | ng-barrel --barrel public_api.ts
 ```
 
 ## Creating missing barrels
