@@ -43,6 +43,11 @@ NgBarrel:
     ...
 ```
 
+```typescript
+export * from './example/example.component';
+
+```
+
 ## How it works
 
 **ng-barrel** takes the CLI output and searches for newly created `.ts` files (excluding `.spec.ts`) 
