@@ -1,0 +1,32 @@
+{
+  "name": "ng-barrel",
+  "version": "1.0.0",
+  "description": "CLI tool to add generated Angular files to barrel files",
+  "main": "ng-barrel.js",
+  "bin": {
+    "ng-barrel": "ng-barrel.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JanMalch/ng-barrel.git"
+  },
+  "keywords": [
+    "Angular",
+    "CLI",
+    "Pipe",
+    "Barrel",
+    "index"
+  ],
+  "author": "JanMalch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JanMalch/ng-barrel/issues"
+  },
+  "homepage": "https://github.com/JanMalch/ng-barrel#readme",
+  "dependencies": {
+    "minimist": "^1.2.0"
+  }
+}
