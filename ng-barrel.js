@@ -20,7 +20,7 @@ stdin.on('data', function (chunk) {
 });
 
 stdin.on('end', function () {
-    if(data.trim().length === 0) {
+    if (data.trim().length === 0) {
         headers.NgBarrel();
         log.error("No input received.");
         return;
@@ -43,29 +43,38 @@ stdin.on('end', function () {
 
         const [, , directory, moduleName] = m;
 
-        const possiblePlaces = getPossibilities(directory, config.barrel);
-        const closestBarrel = possiblePlaces.find(path => fs.existsSync(path));
-
         headers.NgBarrel();
-        if (closestBarrel !== undefined) {
-            const closestBarrelPath = strings.trimEnd(config.barrel, closestBarrel);
 
-            const fromPath = strings.trimStart(closestBarrelPath, directory + moduleName);
-            const exportStatement = strings.exportStatement(fromPath);
-
-            fs.appendFileSync(closestBarrel, `${exportStatement}\n`);
-            log.fileWriteEvent(exportStatement, closestBarrel);
-        } else if (config.create !== undefined) {
+        if (config.create !== undefined) {
             const p = path.join(directory, config.create);
             const newFile = path.join(p, config.barrel);
 
             const fromPath = strings.trimStart(p, directory + moduleName);
             const exportStatement = strings.exportStatement(fromPath);
 
-            fs.writeFileSync(newFile, `${exportStatement}\n`);
-            log.fileWriteEvent(exportStatement, newFile, 'NEW');
+            const fileExists = fs.existsSync(newFile);
+
+            if (fileExists) {
+                fs.appendFileSync(newFile, `${exportStatement}\n`);
+            } else {
+                fs.writeFileSync(newFile, `${exportStatement}\n`);
+            }
+            log.fileWriteEvent(exportStatement, newFile, fileExists ? 'UPDATE' : 'NEW');
         } else {
-            log.error(`No barrel file named '${config.barrel}' found in tree. No --create/-c argument set either.`);
+            const possiblePlaces = getPossibilities(directory, config.barrel);
+            const closestBarrel = possiblePlaces.find(path => fs.existsSync(path));
+
+            if (closestBarrel !== undefined) {
+                const closestBarrelPath = strings.trimEnd(config.barrel, closestBarrel);
+
+                const fromPath = strings.trimStart(closestBarrelPath, directory + moduleName);
+                const exportStatement = strings.exportStatement(fromPath);
+
+                fs.appendFileSync(closestBarrel, `${exportStatement}\n`);
+                log.fileWriteEvent(exportStatement, closestBarrel);
+            } else {
+                log.error(`No barrel file named '${config.barrel}' found in tree. No --create/-c argument set either.`);
+            }
         }
     }
     if (!matched) {

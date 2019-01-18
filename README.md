@@ -45,7 +45,6 @@ NgBarrel:
 
 ```typescript
 export * from './example/example.component';
-
 ```
 
 ## How it works
@@ -65,9 +64,13 @@ ng g s services/foo Foo --project=my-lib | ng-barrel --barrel public_api.ts
 
 ## Creating missing barrels
 
-You can also pass `--create / -c` to specify where a barrel file should be created,
-when no barrel file was found in the whole tree!
-It takes a relative path, which will be combined with the path of the newly added element.
+You can also pass `--create / -c` to specify where a barrel file should be created.
+If this option is specified it takes priority over tree traversing.
+
+If a barrel file at the specified path already exists, the export will be appended.
+Otherwise a new file will be written.
+
+`--create` takes a relative path, which will be combined with the path of the newly added files.
 
 ```bash
 $ ng g s foo/services/Data data | ng-barrel -c ./
