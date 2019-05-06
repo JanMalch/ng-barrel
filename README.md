@@ -1,9 +1,15 @@
-[![npm version](https://badge.fury.io/js/ng-barrel.svg)](https://badge.fury.io/js/ng-barrel) 
-
-# ng-barrel
+# ng-barrel [![npm version](https://badge.fury.io/js/ng-barrel.svg)](https://badge.fury.io/js/ng-barrel) 
 
 **ng-barrel** is a small CLI tool, that takes the output of `ng generate` commands
 and adds the new service / component / ... to the closest `index.ts` file.
+
+## Installation
+
+```bash
+npm i -g ng-barrel
+```
+
+You can now pipe `ng generate` output into `ng-barrel` or `ngb`.
 
 ## Example
 
@@ -43,8 +49,10 @@ NgBarrel:
     ...
 ```
 
-```typescript
+```bash
+$ cat src/app/foo/components/index.ts
 export * from './example/example.component';
+
 ```
 
 ## How it works
