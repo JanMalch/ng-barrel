@@ -4,7 +4,8 @@
   "description": "CLI tool to add generated Angular files to barrel files",
   "main": "ng-barrel.js",
   "bin": {
-    "ng-barrel": "ng-barrel.js"
+    "ng-barrel": "ng-barrel.js",
+    "ngb": "ng-barrel.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
