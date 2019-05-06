@@ -10,10 +10,29 @@ const stdin = process.openStdin();
 const config = minimist(
     process.argv.slice(2),
     {
-        alias: {'c': 'create', 'b': 'barrel'},
+        alias: {'c': 'create', 'b': 'barrel', 'v': 'version', 'h': 'help'},
+        boolean: ['version', 'help'],
         default: {barrel: 'index.ts'}
     }
 );
+
+if (config.version) {
+    console.log("1.3.0");
+    process.exit(0);
+}
+
+if (config.help) {
+    console.log(`
+    Usage:
+        ng g c foo | ngb [options]
+
+    Options:
+        -h, --help         print usage information
+        -v, --version      show version info and exit
+        -c, --create       define path to put index file
+        -b, --barrel       define barrel file name`);
+    process.exit(0);
+}
 
 stdin.on('data', function (chunk) {
     data += chunk;
