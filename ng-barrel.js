@@ -10,27 +10,29 @@ const stdin = process.openStdin();
 const config = minimist(
     process.argv.slice(2),
     {
-        alias: {'c': 'create', 'b': 'barrel', 'v': 'version', 'h': 'help'},
+        alias: {'b': 'barrel', 'v': 'version', 'h': 'help'},
         boolean: ['version', 'help'],
         default: {barrel: 'index.ts'}
     }
 );
 
 if (config.version) {
-    console.log("1.3.0");
+    console.log("2.0.0");
     process.exit(0);
 }
 
 if (config.help) {
     console.log(`
     Usage:
-        ng g c foo | ngb [options]
+        ng g c foo | ngb [create-path] [options]
+        
+    Arguments:
+        [create-path]      define path to put barrel file, relative to created .ts files
 
     Options:
         -h, --help         print usage information
         -v, --version      show version info and exit
-        -c, --create       define path to put index file
-        -b, --barrel       define barrel file name`);
+        -b, --barrel       define barrel file name, default: index.ts`);
     process.exit(0);
 }
 
@@ -63,6 +65,11 @@ stdin.on('end', function () {
         const [, , directory, moduleName] = m;
 
         headers.NgBarrel();
+
+        const isPathProvidedWithoutOption = config["_"] && !!config["_"][0];
+        if (isPathProvidedWithoutOption) {
+            config.create = config["_"][0];
+        }
 
         if (config.create !== undefined) {
             const p = path.join(directory, config.create);
