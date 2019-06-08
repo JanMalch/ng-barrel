@@ -33,7 +33,7 @@ function fileWriteEvent(content, path, hint) {
 exports.log = {withIndention, error, fileWriteEvent};
 
 function exportStatement(fromPath) {
-  return `export * from './${fromPath}';`;
+  return `export * from './${fromPath.replace(/^\//, '')}';`;
 }
 
 function trimStart(prefix, input) {
