@@ -1,6 +1,6 @@
 {
   "name": "ng-barrel",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "CLI tool to add generated Angular files to barrel files",
   "main": "ng-barrel.js",
   "bin": {
