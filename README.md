@@ -72,16 +72,16 @@ ng g s services/foo Foo --project=my-lib | ng-barrel --barrel public_api.ts
 
 ## Creating missing barrels
 
-You can also pass `--create / -c` to specify where a barrel file should be created.
-If this option is specified it takes priority over tree traversing.
+You can also pass a relative path as an argument to specify where a barrel file should be created.
+If this argument is specified it takes priority over tree traversing.
 
 If a barrel file at the specified path already exists, the export will be appended.
 Otherwise a new file will be written.
 
-`--create` takes a relative path, which will be combined with the path of the newly added files.
+The argument should be a path relative to the created TS files.
 
 ```bash
-$ ng g s foo/services/Data data | ng-barrel -c ./
+$ ng g s foo/services/Data data | ngb .
 Angular:
         CREATE src/app/foo/services/data.service.spec.ts (323 bytes)
         CREATE src/app/foo/services/data.service.ts (133 bytes)
