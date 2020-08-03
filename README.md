@@ -1,3 +1,5 @@
+**Archived: ["Barrels now are far less useful and have been removed from the style guide; they remain valuable but are not a matter of Angular style."](https://github.com/angular/angular/issues/13193#issuecomment-308264420) They also cause [issues with circular dependencies, when accidently referenced from inside themselves](https://github.com/angular/angular-cli/issues/7369#issuecomment-322192978).**
+
 # ng-barrel [![npm version](https://badge.fury.io/js/ng-barrel.svg)](https://badge.fury.io/js/ng-barrel) 
 
 **ng-barrel** is a small CLI tool, that takes the output of `ng generate` commands
